@@ -25,3 +25,13 @@ export const ADD_TAG = gql`
     }
   }
 `;
+
+export const REMOVE_TAG = gql`
+  mutation RemoveTag($id: String!, $tag: String!) {
+    removeTag(inviteId: $id, tag: $tag) {
+      inviteId
+      url
+      tags
+    }
+  }
+`;

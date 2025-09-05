@@ -488,3 +488,186 @@ INFO:     127.0.0.1:55023 - "POST /graphql HTTP/1.1" 200 OK
 INFO:     127.0.0.1:55023 - "POST /graphql HTTP/1.1" 200 OK
 INFO:     127.0.0.1:55023 - "POST /graphql HTTP/1.1" 200 OK
 INFO:     127.0.0.1:55049 - "GET /app/uploads/demo-123.webm HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:55636 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55686 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55868 - "GET /app/uploads/demo-123.webm HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:56128 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56151 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56229 - "GET /app/uploads/demo-123.webm HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56433 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56433 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56503 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56503 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56684 - "OPTIONS /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56684 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56684 - "POST /graphql HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/graphql/schema.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [21988]
+INFO:     Started server process [41843]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/repo/base.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [41843]
+Process SpawnProcess-12:
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+    await self._serve(sockets)
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+    config.load()
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/config.py", line 435, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/abdullahhesham/Documents/GitHub/Video-Screening-MVP/backend/app/main.py", line 16, in <module>
+    repo = MemoryRepo()
+           ^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class MemoryRepo without an implementation for abstract method 'remove_tag'
+WARNING:  WatchFiles detected changes in 'app/repo/memory.py'. Reloading...
+Process SpawnProcess-13:
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+    await self._serve(sockets)
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+    config.load()
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/config.py", line 435, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/abdullahhesham/Documents/GitHub/Video-Screening-MVP/backend/app/main.py", line 21, in <module>
+    repo = MongoRepo(db)  # type: ignore[assignment]
+           ^^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class MongoRepo without an implementation for abstract method 'remove_tag'
+WARNING:  WatchFiles detected changes in 'app/repo/mongo.py'. Reloading...
+INFO:     Started server process [42561]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:56786 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56786 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56786 - "POST /upload/demo-123 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56933 - "GET /app/uploads/demo-123.webm HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56935 - "GET /app/uploads/demo-123.webm HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56937 - "GET /app/uploads/demo-123.webm HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56939 - "GET /app/uploads/demo-123.webm HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56969 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56969 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56969 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56969 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56969 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56969 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57027 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57027 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57077 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57112 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57148 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57179 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57218 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57246 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57273 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57304 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57402 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57402 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57404 - "GET /app/uploads/demo-123.webm HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57404 - "GET /app/uploads/demo-123.webm HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57402 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57402 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57402 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57402 - "POST /graphql HTTP/1.1" 200 OK
+'url'
+
+GraphQL request:1:12
+1 | mutation { addTag(inviteId: "test-simple", tag: "Test Tag") { inviteId url tags } }
+  |            ^
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/graphql/execution/execute.py", line 530, in await_result
+    return_type, field_nodes, info, path, await result
+                                          ^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/strawberry/schema/schema_converter.py", line 788, in _async_resolver
+    return await await_maybe(
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/strawberry/utils/await_maybe.py", line 13, in await_maybe
+    return await value
+           ^^^^^^^^^^^
+  File "/Users/abdullahhesham/Documents/GitHub/Video-Screening-MVP/backend/app/graphql/schema.py", line 29, in addTag
+    return CandidateVideo(invite_id=v["invite_id"], url=v["url"], tags=tags)  # type: ignore
+                                                        ~^^^^^^^
+KeyError: 'url'
+INFO:     127.0.0.1:57457 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [42561]
+INFO:     Stopping reloader process [19794]

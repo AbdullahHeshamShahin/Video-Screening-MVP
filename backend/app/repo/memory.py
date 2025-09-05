@@ -34,3 +34,13 @@ class MemoryRepo(Repo):
             tags.append(tag)
         v["tags"] = tags
         return tags
+
+    async def remove_tag(self, invite_id: str, tag: str) -> List[str]:
+        v = self._videos.setdefault(
+            invite_id, {"invite_id": invite_id, "url": None, "tags": []}
+        )
+        tags: List[str] = v.get("tags", [])
+        if tag in tags:
+            tags.remove(tag)
+        v["tags"] = tags
+        return tags

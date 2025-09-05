@@ -31,3 +31,10 @@ class MongoRepo(Repo):
         )
         doc = await self.col.find_one({"invite_id": invite_id}, {"_id": 0, "tags": 1})
         return (doc or {}).get("tags", [])
+
+    async def remove_tag(self, invite_id: str, tag: str) -> List[str]:
+        await self.col.update_one(
+            {"invite_id": invite_id}, {"$pull": {"tags": tag}}, upsert=True
+        )
+        doc = await self.col.find_one({"invite_id": invite_id}, {"_id": 0, "tags": 1})
+        return (doc or {}).get("tags", [])

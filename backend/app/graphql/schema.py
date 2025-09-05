@@ -11,7 +11,7 @@ class Query:
     async def video(self, info: Info, inviteId: str) -> CandidateVideo:
         repo: Repo = info.context["repo"]
         v = await repo.get_video(inviteId)
-        return CandidateVideo(invite_id=v["invite_id"], url=v["url"], tags=v["tags"])  # type: ignore
+        return CandidateVideo(invite_id=v["invite_id"], url=v.get("url"), tags=v.get("tags", []))  # type: ignore
 
 
 @strawberry.type
@@ -26,7 +26,14 @@ class Mutation:
         repo: Repo = info.context["repo"]
         tags = await repo.add_tag(inviteId, tag)
         v = await repo.get_video(inviteId)
-        return CandidateVideo(invite_id=v["invite_id"], url=v["url"], tags=tags)  # type: ignore
+        return CandidateVideo(invite_id=v["invite_id"], url=v.get("url"), tags=tags)  # type: ignore
+
+    @strawberry.mutation
+    async def removeTag(self, info: Info, inviteId: str, tag: str) -> CandidateVideo:
+        repo: Repo = info.context["repo"]
+        tags = await repo.remove_tag(inviteId, tag)
+        v = await repo.get_video(inviteId)
+        return CandidateVideo(invite_id=v["invite_id"], url=v.get("url"), tags=tags)  # type: ignore
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
