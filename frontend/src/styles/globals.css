@@ -1,0 +1,22 @@
+/* Global styles for the MVP */
+html, body, #root {
+  height: 100%;
+}
+
+video {
+  background: #000;
+}
+
+/* Smoothen fonts and provide elegant base */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better focus outlines for accessibility */
+*:focus-visible {
+  outline: 3px solid rgba(79, 70, 229, 0.6);
+  outline-offset: 2px;
+}
+
+
