@@ -10,46 +10,97 @@ import {
 
 export default function Recorder({
   onStop,
+  onStart,
+  onComplete,
   maxSeconds = 120,
+  disabled = false,
 }: {
   onStop: (b: Blob) => void;
+  onStart?: () => void;
+  onComplete?: () => void;
   maxSeconds?: number;
+  disabled?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [recorder, setRecorder] = useState<MediaRecorder | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
-    let timer: number;
     (async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,
       });
-      if (videoRef.current)
+      if (videoRef.current) {
         videoRef.current.srcObject = stream as unknown as MediaStream;
+      }
       const mediaRecorder = new MediaRecorder(stream, {
         mimeType: "video/webm",
       });
       const chunks: BlobPart[] = [];
       mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-      mediaRecorder.onstop = () =>
+      mediaRecorder.onstop = () => {
         onStop(new Blob(chunks, { type: "video/webm" }));
+        // Stop timer when recording stops
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+      };
       setRecorder(mediaRecorder);
-      timer = window.setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
     })();
-    return () => {
-      if (timer) {
-        clearInterval(timer);
-      }
-    };
   }, [onStop]);
 
   useEffect(() => {
     if (elapsedSeconds >= maxSeconds && recorder?.state === "recording") {
       recorder.stop();
+      onComplete?.();
     }
-  }, [elapsedSeconds, maxSeconds, recorder]);
+  }, [elapsedSeconds, maxSeconds, recorder, onComplete]);
+
+  const handleStart = () => {
+    if (recorder && recorder.state !== "recording") {
+      recorder.start();
+      onStart?.();
+      // Start timer only when recording actually starts
+      setElapsedSeconds(0);
+      timerRef.current = window.setInterval(() => {
+        setElapsedSeconds((s) => s + 1);
+      }, 1000);
+    }
+  };
+
+  const handleStop = () => {
+    if (recorder && recorder.state === "recording") {
+      recorder.stop();
+      // Stop timer when recording stops
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    }
+  };
+
+  // Reset timer when component is disabled or reset
+  useEffect(() => {
+    if (disabled) {
+      setElapsedSeconds(0);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    }
+  }, [disabled]);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <Stack spacing={2}>
@@ -109,8 +160,8 @@ export default function Recorder({
       >
         <Button
           variant="contained"
-          onClick={() => recorder?.start()}
-          disabled={!recorder || recorder.state === "recording"}
+          onClick={handleStart}
+          disabled={disabled || !recorder || recorder.state === "recording"}
           size="large"
           sx={{ minWidth: 120 }}
         >
@@ -118,8 +169,8 @@ export default function Recorder({
         </Button>
         <Button
           variant="outlined"
-          onClick={() => recorder?.stop()}
-          disabled={!recorder || recorder.state !== "recording"}
+          onClick={handleStop}
+          disabled={disabled || !recorder || recorder.state !== "recording"}
           size="large"
           sx={{ minWidth: 120 }}
         >
