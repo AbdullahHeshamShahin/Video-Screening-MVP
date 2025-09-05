@@ -8,24 +8,24 @@ from ..repo.base import Repo
 @strawberry.type
 class Query:
     @strawberry.field
-    async def video(self, info: Info, invite_id: str) -> CandidateVideo:
+    async def video(self, info: Info, inviteId: str) -> CandidateVideo:
         repo: Repo = info.context["repo"]
-        v = await repo.get_video(invite_id)
+        v = await repo.get_video(inviteId)
         return CandidateVideo(invite_id=v["invite_id"], url=v["url"], tags=v["tags"])  # type: ignore
 
 
 @strawberry.type
 class Mutation:
     @strawberry.mutation
-    async def createInvite(self, info: Info, invite_id: str) -> str:
+    async def createInvite(self, info: Info, inviteId: str) -> str:
         repo: Repo = info.context["repo"]
-        return await repo.create_invite(invite_id)
+        return await repo.create_invite(inviteId)
 
     @strawberry.mutation
-    async def addTag(self, info: Info, invite_id: str, tag: str) -> CandidateVideo:
+    async def addTag(self, info: Info, inviteId: str, tag: str) -> CandidateVideo:
         repo: Repo = info.context["repo"]
-        tags = await repo.add_tag(invite_id, tag)
-        v = await repo.get_video(invite_id)
+        tags = await repo.add_tag(inviteId, tag)
+        v = await repo.get_video(inviteId)
         return CandidateVideo(invite_id=v["invite_id"], url=v["url"], tags=tags)  # type: ignore
 
 

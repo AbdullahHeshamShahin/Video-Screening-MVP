@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from strawberry.fastapi import GraphQLRouter
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
@@ -41,6 +42,9 @@ app.add_middleware(
 )
 
 app.include_router(graphql_app, prefix="/graphql")
+
+# Serve uploaded files statically
+app.mount("/app/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
 
 
 # Pragmatic REST upload endpoint (multipart form)

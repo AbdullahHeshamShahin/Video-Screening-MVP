@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Box,
   Stack,
   Button,
   LinearProgress,
@@ -38,7 +37,11 @@ export default function Recorder({
       setRecorder(mediaRecorder);
       timer = window.setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
     })();
-    return () => timer && clearInterval(timer);
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
   }, [onStop]);
 
   useEffect(() => {
