@@ -1,0 +1,29 @@
+INFO:     Will watch for changes in these directories: ['/Users/abdullahhesham/Documents/GitHub/Video-Screening-MVP/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [19794] using WatchFiles
+INFO:     Started server process [19867]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:59580 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59607 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59649 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59667 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59720 - "POST /upload/test-123 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59747 - "POST /graphql HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59837 - "POST /graphql HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/main.py', 'app/settings.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [19867]
+INFO:     Started server process [24554]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/settings.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [24554]
+INFO:     Started server process [24689]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
